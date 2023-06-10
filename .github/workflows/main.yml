@@ -19,4 +19,4 @@ jobs:
         npm install --global surge
         surge token 9e3245c4523779c03a01ac588e5a7f1a
 
-        surge --project ./ --domain dummy2hts.surge.sh 
+        surge --project ./ 
