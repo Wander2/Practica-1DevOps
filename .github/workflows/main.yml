@@ -14,9 +14,10 @@ jobs:
       uses: actions/checkout@v3.2.0
 
     - name: Build and Deploy
-      run: 
-       
+      run: |
+        # Configurar Surge.sh
         npm install --global surge
         surge token 9e3245c4523779c03a01ac588e5a7f1a
 
-        surge --project ./ 
+        # Desplegar en Surge.sh
+        surge --project ./  
