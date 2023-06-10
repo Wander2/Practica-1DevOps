@@ -1,23 +1,20 @@
-name: Deploy to Surge
-
-on:
-  push:
-    branches:
-      - main
+name: Continuous Deployment
+on: [push]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3.2.0
+            
+            - run: echo "Setting up NodeJs"
+            - name: Setup NodeJs
+              uses: actions/setup-node@v1
+              with:
+               node-version: 12.x
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3.2.0
-
-    - name: Build and Deploy
-      run: |
-        # Configurar Surge.sh
-        npm install --global surge
-        surge token 9e3245c4523779c03a01ac588e5a7f1a
-
-        # Desplegar en Surge.sh
-        surge 
+            - run: npm install -g surge
+            - run: echo "Deploying website"
+            - run: surge ./ practicathds.surge.sh --token 9e3245c4523779c03a01ac588e5a7f1a
+          
+            - run: echo "Please visit => practicathds.surge.sh"
